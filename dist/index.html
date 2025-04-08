@@ -3,14 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>login-register-page</title>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
-<script src="validation.js" defer></script>
+<!-- <script src="validation.js" defer></script>-->
+<!-- <script  src="./script.js"></script>-->
+
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-<script  src="./script.js"></script>
+
+<!-- jQuery Validation Plugin -->
+<!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.5/jquery.validate.min.js"></script> -->
+ <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+<!-- Your custom script -->
+<script src="script.js"></script>
+
+
 
 </head>
 <body>
@@ -58,21 +67,21 @@
  <div class="input-group-container">
     <div class="input-group-left">
          <div class="input-container">
-      <input type="text" name="firstname" id="firstname" placeholder=" "/>
+      <input type="text" name="firstname" class="firstname" id="firstname" placeholder=" "/>
       <label for="firstname">First Name</label>
-      <div class="bar"></div>
+      <!--   <div class="bar"></div>-->
     </div>
 
     <div class="input-container">
-      <input type="text" name="lastname" id="lastname" placeholder=" "/>
+      <input type="text" name="lastname" id="lastname" class="lastname" placeholder=" "/>
       <label for="lastname">Last Name</label>
-      <div class="bar"></div>
+     <!--    <div class="bar"></div>-->
     </div>
 
     <div class="input-container">
-      <input type="text" name="phone" id="phone" placeholder=" "/>
+      <input type="text" name="phone" id="phone" class="phone" placeholder=" "/>
       <label for="phone">Phone Number</label>
-      <div class="bar"></div>
+     <!--   <div class="bar"></div>-->
     </div>
         <!-- Address Container -->
                <div class="address-container">
@@ -94,23 +103,23 @@
 <!--             <div class="bar"></div> -->
         </div>
         <div class="input-container">
-            <select class="state-select" placeholder=" ">
+            <select class="state-select" placeholder=" " name= "state">
                 <option value="" disabled selected>Select Country First</option>
             </select>
             <label>State</label>
-            <div class="bar"></div>
+            <!--   <div class="bar"></div>-->
         </div>
         <div class="input-container">
-            <select class="district-select" placeholder=" ">
+            <select class="district-select" placeholder=" " name="district">
                 <option value="" disabled selected>Select State First</option>
             </select>
             <label>District</label>
-            <div class="bar"></div>
+          <!--    <div class="bar"></div> -->
         </div>
         <div class="input-container">
       <input type="text" name="pincode" id="pincode" placeholder=" " />
       <label for="pincode">Pincode</label>
-      <div class="bar"></div>
+      <!--   <div class="bar"></div> -->
     </div>
         
         
@@ -135,7 +144,6 @@
         		<option value="Employee">Employee</option>
     		</select>
     			<label for="user-role">User Role</label>
-    			<div class="bar"></div>
 		</div>
     
     
@@ -143,25 +151,21 @@
         <div class="input-container">
       <input type="email" name="email" id="email" placeholder=" " />
       <label for="email">Email</label>
-            <div class="bar"></div>
         </div>
 
         <div class="input-container">
       <input type="text" name="username" id="register-username" placeholder=" " />
       <label for="register-username">Username</label>
-            <div class="bar"></div>
         </div>
 
         <div class="input-container">
       <input type="password" name="password" id="register-password" placeholder=" "/>
       <label for="register-password">Password</label>
-            <div class="bar"></div>
         </div>
 
          <div class="input-container">
       <input type="password" name="confirm_password" id="confirm-password" placeholder=" " />
       <label for="confirm-password">Repeat Password</label>
-      <div class="bar"></div>
     </div>
     </div>
   </div>  
@@ -173,11 +177,12 @@
   </div>
 </div>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
-   <script>
-        $(document).ready(function () {
+ <!--  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'>
+  </script><script  src="./script.js"></script>
+   <script >
+/*         $(document).ready(function () {
             $("#loginForm, #registrationForm").formValidator();
-        });
-    </script>
+        }); */
+    </script> -->
 </body>
 </html>

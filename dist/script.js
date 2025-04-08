@@ -137,99 +137,132 @@ $(document).ready(function() {
 	$('.address-section .input-container select').on('change', function() {
 		$(this).toggleClass('has-value', !!$(this).val());
 	});
-});
 
 
 
 
-$(document).ready(function () {
-    $(".toggle").on("click", function () {
-        $(".container").stop().addClass("active");
-    });
 
-    $(".close").on("click", function () {
-        $(".container").stop().removeClass("active");
-    });
+	$("#registrationForm").validate({
+		errorElement: 'p',
+	    errorClass: 'red',
+	    focusInvalid: false,
+		errorElement: "span",
+	    errorClass: "error-text",
+	  rules: {
+	    firstname: "required",
+	    lastname: "required",
+	    phone: {
+	      required: true,
+	      digits: true,
+	      minlength: 10,
+	      maxlength: 15
+	    },
+	    email: {
+	      required: true,
+	      email: true
+	    },
+	    username: "required",
+	    password: {
+	      required: true,
+	      minlength: 6
+	    },
+	    confirm_password: {
+	      required: true,
+	      equalTo: "#register-password"
+	    },
+	    country: "required",
+	    role: "required",
+	    pincode: {
+	      required: true,
+	      digits: true,
+	      minlength: 4
+	    }
+	  },
+	  messages: {
+	    firstname: "Enter your first name",
+	    lastname: "Enter your last name",
+	    phone: {
+	      required: "Phone number is required",
+	      digits: "Enter valid digits only",
+	      minlength: "Too short",
+	      maxlength: "Too long"
+	    },
+	    email: "Enter a valid email address",
+	    username: "Enter a username",
+	    password: {
+	      required: "Enter a password",
+	      minlength: "Minimum 6 characters"
+	    },
+	    confirm_password: {
+	      required: "Please confirm your password",
+	      equalTo: "Passwords do not match"
+	    },
+	    country: "Please select a country",
+	    role: "Select a role",
+	    pincode: {
+	      required: "Enter a pincode",
+	      digits: "Only digits allowed",
+	      minlength: "Minimum 4 digits"
+	    }
+	  },
+	  
+	  highlight: function(e) {
+		$(e).closest('.form-group')
+	        .removeClass('has-info')
+	        .addClass('has-error');
+	        },
+	  success: function(e) {
+	        $(e).closest('.form-group')
+	        	.removeClass('has-error');// .addClass('has-info');
+	        $(e).remove();
+	   		},
+	submitHandler: function (form) {
+	      // alert("sucess");
+		   
+		   // Collect signup data
+		   const signupData = {
+		     userId: 0,
+		     firstName: $(".firstname").val(),
+		     lastName: $(".lastname").val(),
+		     userPhoneNumber: $(".phone").val(),
+		     userEmail: $("#email").val(), // Use correct ID
+		     usermasterdto: {
+		       userName: $("#register-username").val(),
+		       userPassword: $("#register-password").val(),
+		       userRole: $("#user-role").val()
+		     },
+			 address: $(".address-section").map(function () {
+			   return {
+			     nation: $(this).find(".country-select").val(),
+			     state: $(this).find(".state-select").val(),
+			     district: $(this).find(".district-select").val(),
+			     pincode: $(this).find("#pincode").val()
+			   };
+			 }).get()
+		     
+		   };
+					  console.log("-----------",signupData);
+					  console.log(form)
+					             $.ajax({
+					                 url: "http://localhost:8080/user/", // Spring Boot signup endpoint
+					                 type: "POST",
+					                 contentType: "application/json",
+					                 data: JSON.stringify(signupData),
+					                 success: function (response) {
+					                     alert("Signup successful!");
+					                     window.location.href = "/index.html";
+					                 },
+					                 error: function (xhr) {
+					                     alert("Signup failed: " + xhr.responseText);
+					                 }
+					             });
 
-    // FORM VALIDATION
-    $("#registrationForm").validate({
-        rules: {
-            firstname: "required",
-            lastname: "required",
-            phone: {
-                required: true,
-                digits: true,
-                minlength: 10,
-                maxlength: 10
-            },
-            country: "required",
-            pincode: {
-                required: true,
-                digits: true,
-                minlength: 6,
-                maxlength: 6
-            },
-            role: "required",
-            email: {
-                required: true,
-                email: true
-            },
-            username: {
-                required: true,
-                minlength: 3
-            },
-            password: {
-                required: true,
-                minlength: 6
-            },
-            confirm_password: {
-                required: true,
-                equalTo: "#password" // Ensure your password field has id="password"
-            }
-        },
-        messages: {
-            firstname: "Please enter your first name",
-            lastname: "Please enter your last name",
-            phone: {
-                required: "Please enter your phone number",
-                digits: "Only numbers are allowed",
-                minlength: "Phone number must be 10 digits",
-                maxlength: "Phone number must be 10 digits"
-            },
-            country: "Please select your country",
-            pincode: {
-                required: "Please enter your pincode",
-                digits: "Only numbers are allowed",
-                minlength: "Pincode must be 6 digits",
-                maxlength: "Pincode must be 6 digits"
-            },
-            role: "Please select a user role",
-            email: {
-                required: "Please enter your email",
-                email: "Enter a valid email address"
-            },
-            username: {
-                required: "Please enter a username",
-                minlength: "Username must be at least 3 characters long"
-            },
-            password: {
-                required: "Please provide a password",
-                minlength: "Password must be at least 6 characters long"
-            },
-            confirm_password: {
-                required: "Please confirm your password",
-                equalTo: "Passwords do not match"
-            }
-        }
-    });
+	                                                                 
+	   },
 
-    // Prevent default form submission and check validation
-    $("#registrationForm").submit(function (event) {
-        event.preventDefault(); // Prevents form submission
-        if ($(this).valid()) {
-            console.log("Form submitted!");
-            this.submit(); // Uncomment this to allow actual submission
-        }
-    });
+	  
+	});
+	
+
 });
 
