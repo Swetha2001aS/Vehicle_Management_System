@@ -116,7 +116,7 @@ $(document).ready(function() {
 				$.each(countryData[country][state], function(index, district) {
 					$districtSelect.append($('<option>', {
 						value: district,
-						text: district
+						text: district,
 					}));
 				});
 			} else {
@@ -139,130 +139,202 @@ $(document).ready(function() {
 	});
 
 
+	//--------------------------------registration------------------------------------
+
+	$(document).ready(function() {
+
+		$("#registrationForm").validate({
+			errorElement: 'p',
+			errorClass: 'red',
+			focusInvalid: false,
+			errorElement: "span",
+			errorClass: "error-text",
+			rules: {
+				firstname: "required",
+				lastname: "required",
+				phone: {
+					required: true,
+					digits: true,
+					minlength: 10,
+					maxlength: 15
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				username: "required",
+				password: {
+					required: true,
+					minlength: 6
+				},
+				confirm_password: {
+					required: true,
+					equalTo: "#register-password"
+				},
+				country: "required",
+				role: "required",
+				pincode: {
+					required: true,
+					digits: true,
+					length: 6
+				}
+			},
+			messages: {
+				firstname: "Enter your first name",
+				lastname: "Enter your last name",
+				phone: {
+					required: "Phone number is required",
+					digits: "Enter valid digits only",
+					minlength: "Too short",
+					maxlength: "Too long"
+				},
+				email: "Enter a valid email address",
+				username: "Enter a username",
+				password: {
+					required: "Enter a password",
+					minlength: "Minimum 6 characters"
+				},
+				confirm_password: {
+					required: "Please confirm your password",
+					equalTo: "Passwords do not match"
+				},
+				country: "Please select a country",
+				role: "Select a role",
+				pincode: {
+					required: "Enter a pincode",
+					digits: "Only digits allowed",
+					minlength: "Minimum 4 digits"
+				}
+			},
+
+			highlight: function(e) {
+				$(e).closest('.form-group')
+					.removeClass('has-info')
+					.addClass('has-error');
+			},
+			success: function(e) {
+				$(e).closest('.form-group')
+					.removeClass('has-error');// .addClass('has-info');
+				$(e).remove();
+			},
+			submitHandler: function(form) {
+				// alert("sucess");
+
+				// Collect signup data
+				const signupData = {
+					userId: 0,
+					firstName: $(".firstname").val(),
+					lastName: $(".lastname").val(),
+					userPhoneNumber: $(".phone").val(),
+					userEmail: $("#email").val(), // Use correct ID
+					usermasterdto: {
+						userName: $("#register-username").val(),
+						userPassword: $("#register-password").val(),
+						userRole: $("#user-role").val()
+					},
+					address: $(".address-section").map(function() {
+						return {
+							nation: $(this).find(".country-select").val(),
+							state: $(this).find(".state-select").val(),
+							district: $(this).find(".district-select").val(),
+							pincode: $(this).find("#pincode").val()
+						};
+					}).get()
+
+				};
+				console.log("-----------", signupData);
+				console.log(form)
+				$.ajax({
+					url: "http://localhost:8080/user/", // Spring Boot signup endpoint
+					type: "POST",
+					contentType: "application/json",
+					data: JSON.stringify(signupData),
+					success: function(response) {
+						alert("Signup successful!");
+						window.location.href = "/index.html";
+					},
+					error: function(xhr) {
+						alert("Signup failed: " + xhr.responseText);
+					}
+				});
 
 
+			},
 
-	$("#registrationForm").validate({
-		errorElement: 'p',
-	    errorClass: 'red',
-	    focusInvalid: false,
-		errorElement: "span",
-	    errorClass: "error-text",
-	  rules: {
-	    firstname: "required",
-	    lastname: "required",
-	    phone: {
-	      required: true,
-	      digits: true,
-	      minlength: 10,
-	      maxlength: 15
-	    },
-	    email: {
-	      required: true,
-	      email: true
-	    },
-	    username: "required",
-	    password: {
-	      required: true,
-	      minlength: 6
-	    },
-	    confirm_password: {
-	      required: true,
-	      equalTo: "#register-password"
-	    },
-	    country: "required",
-	    role: "required",
-	    pincode: {
-	      required: true,
-	      digits: true,
-	      minlength: 4
-	    }
-	  },
-	  messages: {
-	    firstname: "Enter your first name",
-	    lastname: "Enter your last name",
-	    phone: {
-	      required: "Phone number is required",
-	      digits: "Enter valid digits only",
-	      minlength: "Too short",
-	      maxlength: "Too long"
-	    },
-	    email: "Enter a valid email address",
-	    username: "Enter a username",
-	    password: {
-	      required: "Enter a password",
-	      minlength: "Minimum 6 characters"
-	    },
-	    confirm_password: {
-	      required: "Please confirm your password",
-	      equalTo: "Passwords do not match"
-	    },
-	    country: "Please select a country",
-	    role: "Select a role",
-	    pincode: {
-	      required: "Enter a pincode",
-	      digits: "Only digits allowed",
-	      minlength: "Minimum 4 digits"
-	    }
-	  },
-	  
-	  highlight: function(e) {
-		$(e).closest('.form-group')
-	        .removeClass('has-info')
-	        .addClass('has-error');
-	        },
-	  success: function(e) {
-	        $(e).closest('.form-group')
-	        	.removeClass('has-error');// .addClass('has-info');
-	        $(e).remove();
-	   		},
-	submitHandler: function (form) {
-	      // alert("sucess");
-		   
-		   // Collect signup data
-		   const signupData = {
-		     userId: 0,
-		     firstName: $(".firstname").val(),
-		     lastName: $(".lastname").val(),
-		     userPhoneNumber: $(".phone").val(),
-		     userEmail: $("#email").val(), // Use correct ID
-		     usermasterdto: {
-		       userName: $("#register-username").val(),
-		       userPassword: $("#register-password").val(),
-		       userRole: $("#user-role").val()
-		     },
-			 address: $(".address-section").map(function () {
-			   return {
-			     nation: $(this).find(".country-select").val(),
-			     state: $(this).find(".state-select").val(),
-			     district: $(this).find(".district-select").val(),
-			     pincode: $(this).find("#pincode").val()
-			   };
-			 }).get()
-		     
-		   };
-					  console.log("-----------",signupData);
-					  console.log(form)
-					             $.ajax({
-					                 url: "http://localhost:8080/user/", // Spring Boot signup endpoint
-					                 type: "POST",
-					                 contentType: "application/json",
-					                 data: JSON.stringify(signupData),
-					                 success: function (response) {
-					                     alert("Signup successful!");
-					                     window.location.href = "/index.html";
-					                 },
-					                 error: function (xhr) {
-					                     alert("Signup failed: " + xhr.responseText);
-					                 }
-					             });
 
-	                                                                 
-	   },
+		});
 
-	  
 	});
-	
+	//-------------------------------login--------------------------------------------	
+
+	//login
+	$(document).ready(function() {
+		$("form.login").validate({
+			errorElement: 'p',
+			errorClass: 'red',
+			errorElement: "span",
+			errorClass: "error-text",
+			rules: {
+				username: {
+					required: true
+				},
+				password: {
+					required: true,
+					minlength: 6
+				}
+			},
+			messages: {
+				username: "* Username is required",
+				password: {
+					required: "* Password is required",
+					minlength: "* Password must be at least 6 characters"
+				}
+			},
+			highlight: function(element) {
+				$(element).addClass("error");
+			},
+			unhighlight: function(element) {
+				$(element).removeClass("error");
+			},
+			errorPlacement: function(error, element) {
+				error.insertAfter(element);
+			},
+			submitHandler: function(form) {
+				const loginData = {
+					userName: $("#username").val(),
+					userPassword: $("#password").val()
+				};
+
+				$.ajax({
+					url: "http://localhost:8080/api/Users_master/login",
+					type: "POST",
+					contentType: "application/json",
+					data: JSON.stringify(loginData),
+					success: function(response) {
+						localStorage.setItem("userId", response.userId);
+						localStorage.setItem("firstName", response.firstName);
+						localStorage.setItem("lastName", response.lastName);
+						localStorage.setItem("userPhoneNumber", response.userPhoneNumber);
+						localStorage.setItem("userEmail", response.userEmail);
+
+						const fullName = response.firstName + " " + response.lastName;
+						localStorage.setItem("fullName", fullName);
+
+						alert("Login successful!");
+						window.location.href = "/dashboard.html";
+					},
+					error: function(xhr, status, error) {
+						console.log("Error Status:", status);
+						console.log("Error:", error);
+						console.log("Full Response:", xhr.responseText);
+						alert("Invalid username or password");
+					}
+				});
+			}
+		});
+	});
+
+
 
 });
 
