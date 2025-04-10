@@ -137,134 +137,146 @@ $(document).ready(function() {
 	$('.address-section .input-container select').on('change', function() {
 		$(this).toggleClass('has-value', !!$(this).val());
 	});
-
+});
 
 	//--------------------------------registration------------------------------------
 
 	$(document).ready(function() {
 
+		// Apply validation to the registration form
 		$("#registrationForm").validate({
-			errorElement: 'p',
-			errorClass: 'red',
-			focusInvalid: false,
-			errorElement: "span",
-			errorClass: "error-text",
-			rules: {
-				firstname: "required",
-				lastname: "required",
-				phone: {
-					required: true,
-					digits: true,
-					minlength: 10,
-					maxlength: 15
-				},
-				email: {
-					required: true,
-					email: true
-				},
-				username: "required",
-				password: {
-					required: true,
-					minlength: 6
-				},
-				confirm_password: {
-					required: true,
-					equalTo: "#register-password"
-				},
-				country: "required",
-				role: "required",
-				pincode: {
-					required: true,
-					digits: true,
-					length: 6
-				}
+	  
+		  // Error styling
+		  errorElement: "span", // Show errors in <span> tag
+		  errorClass: "error-text", // Custom class for styling error messages
+		  focusInvalid: false,
+	  
+		  // Validation rules for each field
+		  rules: {
+			firstname: "required", // First name is required
+			lastname: "required",  // Last name is required
+			phone: {
+			  required: true,
+			  digits: true,
+			  minlength: 10,
+			  maxlength: 15
 			},
-			messages: {
-				firstname: "Enter your first name",
-				lastname: "Enter your last name",
-				phone: {
-					required: "Phone number is required",
-					digits: "Enter valid digits only",
-					minlength: "Too short",
-					maxlength: "Too long"
-				},
-				email: "Enter a valid email address",
-				username: "Enter a username",
-				password: {
-					required: "Enter a password",
-					minlength: "Minimum 6 characters"
-				},
-				confirm_password: {
-					required: "Please confirm your password",
-					equalTo: "Passwords do not match"
-				},
-				country: "Please select a country",
-				role: "Select a role",
-				pincode: {
-					required: "Enter a pincode",
-					digits: "Only digits allowed",
-					minlength: "Minimum 4 digits"
-				}
+			email: {
+			  required: true,
+			  email: true
 			},
-
-			highlight: function(e) {
-				$(e).closest('.form-group')
-					.removeClass('has-info')
-					.addClass('has-error');
+			username: "required",
+			password: {
+			  required: true,
+			  minlength: 6
 			},
-			success: function(e) {
-				$(e).closest('.form-group')
-					.removeClass('has-error');// .addClass('has-info');
-				$(e).remove();
+			confirm_password: {
+			  required: true,
+			  equalTo: "#register-password" // Must match password field
 			},
-			submitHandler: function(form) {
-				// alert("sucess");
-
-				// Collect signup data
-				const signupData = {
-					userId: 0,
-					firstName: $(".firstname").val(),
-					lastName: $(".lastname").val(),
-					userPhoneNumber: $(".phone").val(),
-					userEmail: $("#email").val(), // Use correct ID
-					usermasterdto: {
-						userName: $("#register-username").val(),
-						userPassword: $("#register-password").val(),
-						userRole: $("#user-role").val()
-					},
-					address: $(".address-section").map(function() {
-						return {
-							nation: $(this).find(".country-select").val(),
-							state: $(this).find(".state-select").val(),
-							district: $(this).find(".district-select").val(),
-							pincode: $(this).find("#pincode").val()
-						};
-					}).get()
-
+			country: "required",
+			role: "required",
+			pincode: {
+			  required: true,
+			  digits: true,
+			  minlength: 6,
+			  maxlength: 6
+			}
+		  },
+	  
+		  // Error messages for each field
+		  messages: {
+			firstname: "Enter your first name",
+			lastname: "Enter your last name",
+			phone: {
+			  required: "Phone number is required",
+			  digits: "Enter valid digits only",
+			  minlength: "Too short",
+			  maxlength: "Too long"
+			},
+			email: "Enter a valid email address",
+			username: "Enter a username",
+			password: {
+			  required: "Enter a password",
+			  minlength: "Minimum 6 characters"
+			},
+			confirm_password: {
+			  required: "Please confirm your password",
+			  equalTo: "Passwords do not match"
+			},
+			country: "Please select a country",
+			role: "Select a role",
+			pincode: {
+			  required: "Enter a pincode",
+			  digits: "Only digits allowed",
+			  minlength: "Minimum 6 digits",
+			  maxlength: "Maximum 6 digits"
+			}
+		  },
+	  
+		  // Highlight field when error is shown
+		  highlight: function(e) {
+			$(e).closest('.form-group')
+			  .removeClass('has-info')
+			  .addClass('has-error');
+		  },
+	  
+		  // On successful validation, remove error highlight
+		  success: function(e) {
+			$(e).closest('.form-group')
+			  .removeClass('has-error');
+			$(e).remove();
+		  },
+	  
+		  // When form is valid and submitted
+		  submitHandler: function(form) {
+	  
+			// Collect all form values
+			const signupData = {
+			  userId: 0,
+			  firstName: $(".firstname").val(),
+			  lastName: $(".lastname").val(),
+			  userPhoneNumber: $(".phone").val(),
+			  userEmail: $("#email").val(),
+	  
+			  // Nested object for login-related info
+			  usermasterdto: {
+				userName: $("#register-username").val(),
+				userPassword: $("#register-password").val(),
+				userRole: $("#user-role").val()
+			  },
+	  
+			  // Loop through all address sections
+			  address: $(".address-section").map(function() {
+				return {
+				  nation: $(this).find(".country-select").val(),
+				  state: $(this).find(".state-select").val(),
+				  district: $(this).find(".district-select").val(),
+				  pincode: $(this).find("#pincode").val()
 				};
-				console.log("-----------", signupData);
-				console.log(form)
-				$.ajax({
-					url: "http://localhost:8080/user/", // Spring Boot signup endpoint
-					type: "POST",
-					contentType: "application/json",
-					data: JSON.stringify(signupData),
-					success: function(response) {
-						alert("Signup successful!");
-						window.location.href = "/index.html";
-					},
-					error: function(xhr) {
-						alert("Signup failed: " + xhr.responseText);
-					}
-				});
-
-
-			},
-
-
+			  }).get()
+			};
+	  
+			console.log("-----------", signupData);
+	  
+			// Send signup data to the server
+			$.ajax({
+			  url: "http://localhost:8080/user/",
+			  type: "POST",
+			  contentType: "application/json",
+			  data: JSON.stringify(signupData),
+			  success: function(response) {
+				alert("Signup successful!");
+				window.location.href = "../index.html";
+			  },
+			  error: function(xhr) {
+				alert("Signup failed: " + xhr.responseText);
+			  }
+			});
+		  }
 		});
-
-	});
+	  });
+	  
 	//-------------------------------login--------------------------------------------	
 
 	//login
@@ -311,17 +323,24 @@ $(document).ready(function() {
 					contentType: "application/json",
 					data: JSON.stringify(loginData),
 					success: function(response) {
+
+						console.log("Login Response:", response);
+
+          				const firstName = response.firstName || "";
+          				const lastName = response.lastName || "";
+          				const fullName = (firstName + " " + lastName).trim();
 						localStorage.setItem("userId", response.userId);
 						localStorage.setItem("firstName", response.firstName);
 						localStorage.setItem("lastName", response.lastName);
 						localStorage.setItem("userPhoneNumber", response.userPhoneNumber);
 						localStorage.setItem("userEmail", response.userEmail);
+						localStorage.setItem("userName", response.userName);
+						localStorage.setItem("userPassword", loginData.userPassword); // password from input
+						
 
-						const fullName = response.firstName + " " + response.lastName;
-						localStorage.setItem("fullName", fullName);
-
+					
 						alert("Login successful!");
-						window.location.href = "/dashboard.html";
+						window.location.href = "./HTML/dashboard.html";
 					},
 					error: function(xhr, status, error) {
 						console.log("Error Status:", status);
@@ -333,8 +352,5 @@ $(document).ready(function() {
 			}
 		});
 	});
-
-
-
-});
+	
 
