@@ -4,12 +4,25 @@ $(document).ready(function () {
       function () { $(this).addClass("expanded"); },
       function () { $(this).removeClass("expanded"); }
     );
+
+      // Active menu highlight
+  $(".sidebar .nav-link").on("click", function () {
+    $(".sidebar .nav-link").removeClass("active");
+    $(this).addClass("active");
+  });
+
+
+   // Load view_all_user.html inside #mainContent
+   $('#viewUserBtn').click(function () {
+    $('#mainContent').load('./view_all_user.html');
+  });
+
+
+  // Set welcome message using user's first name from localStorage
+  const userFirstName = localStorage.getItem("firstName") || "User";
+  $("#welcomeUser").text(`Welcome, ${userFirstName}`);
   
-    // Show Welcome Name
-    const fullName = localStorage.getItem("fullName");
-    if (fullName) {
-      $("#welcomeUser").text(`Welcome, ${fullName}`);
-    } 
+  
     // Logout
     $("#logoutLink").click(function (e) {
       e.preventDefault();
@@ -33,58 +46,7 @@ $(document).ready(function () {
 
 
     //---------------------------------
- });
-
-
- // $(document).ready(function () {
-
-
- //     const userName = localStorage.getItem("userName");
-// const userPassword = localStorage.getItem("userPassword");
-
-// if (userName && userPassword) {
-//   const loginData = {
-//     userName: userName,
-//     userPassword: userPassword
-//   };
-
-//   $.ajax({
-//     url: "http://localhost:8080/api/Users_master/authenticate",
-//     type: "POST",
-//     contentType: "application/json",
-//     data: JSON.stringify(loginData),
-//     success: function (user) {
-//       const profileHtml = `
-//         <div class="profile-header-wide">
-//           <h2>${user.firstName} ${user.lastName}</h2>
-//           <p>${user.userEmail}</p>
-//         </div>
-//         <div class="address-wrapper-wide">
-//           ${(user.addresses || []).map(addr => `
-//             <div class="address-card-wide">
-//               <div><span>Nation:</span> ${addr.nation}</div>
-//               <div><span>State:</span> ${addr.state}</div>
-//               <div><span>District:</span> ${addr.district}</div>
-//               <div><span>Pincode:</span> ${addr.pincode}</div>
-//             </div>
-//           `).join('')}
-//         </div>
-//       `;
-//       $('#userDetails').html(profileHtml);
-//     },
-//     error: function () {
-//       $('#userDetails').html('<p class="text-danger">Failed to fetch user details.</p>');
-//     }
-//   });
-
-
-
-// } else {
-//   $('#userDetails').html('<p class="text-danger">Login credentials not found. Please login again.</p>');
-// }
-
-// }); 
-
+    });
 
     //section controll
     $('#homeLink').on('click', function (e) {
@@ -96,42 +58,56 @@ $(document).ready(function () {
         $('#profileSection').hide();  // Hide profile
       });
 
-// Initialize profile
-const userdata = localStorage.getItem("loginData");
-const user = JSON.parse(userdata);
-console.log("User data:", user);
-
-const name = user?.userFirstName || "User";
-const profileLetter = name.charAt(0).toUpperCase();
-// $("#profileLetter").text(profileLetter);
-// $("#welcomeName").text(name);
-
-// Navigation handlers
+});
+$(document).ready(function () {
+  $("#profileUserId").text(localStorage.getItem("userId") || "Not Available");
+  $("#profileFirstName").text(localStorage.getItem("firstName") || "Not Available");
+  $("#profileLastName").text(localStorage.getItem("lastName") || "Not Available");
+  $("#profileEmail").text(localStorage.getItem("userEmail") || "Not Available");
+  $("#profilePhone").text(localStorage.getItem("userPhoneNumber") || "Not Available");
 
 
-  // Set profile data from localStorage
-  $("#profileUserId").text(user.userId);
-  $("#profileFirstName").text(user.FirstName);
-  $("#profileLastName").text(user.LastName);
-  $("#profileEmail").text(user.userEmail);
-  $("#profilePhone").text(user.userPhoneNumber);
+  let addressList = [];
+  try {
+    addressList = JSON.parse(localStorage.getItem("address")) || [];
+    console.log("Parsed Address List from localStorage:", addressList);
+  } catch (e) {
+    console.error("Error parsing addressDto from localStorage:", e);
+  }
 
-  // Display addresses from localStorage (no API)
-  const addressList = user.addressDto || [];
   let addressHtml = "<h4>Addresses:</h4>";
-
-  $.each(addressList, function (index, addr) {
-    addressHtml += `<p>${addr.city}, ${addr.district}, ${addr.state || ""}, ${addr.country} - ${addr.pincode}</p>`;
-  });
 
   if (addressList.length === 0) {
     addressHtml += "<p>No addresses found.</p>";
+  } else {
+    $.each(addressList, function (index, addr) {
+      addressHtml += `<p>${addr.nation}, ${addr.state}, ${addr.district}, ${addr.pincode}</p>`;
+    });
   }
 
   $("#profileUserAddress").html(addressHtml);
 });
 
 
+//-------------username _ top right ------------------
+document.addEventListener("DOMContentLoaded", function () {
+  $("#homeLink").click(function (e) {
+    e.preventDefault();
+    $("#mainContent").html("<h2>Welcome to Dashboard</h2>");
+  });
+
+  $("#profileLink").click(function (e) {
+    e.preventDefault();
+    $("#mainContent").html($("#profileSection").html());
+  });
+
+  $(".action-btn").click(function (e) {
+    if ($(this).text().includes("View User List")) {
+      e.preventDefault();
+      $("#mainContent").load("./view_all_user.html");
+    }
+  });
+});
 
 
 

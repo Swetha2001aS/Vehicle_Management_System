@@ -318,27 +318,29 @@ $(document).ready(function() {
 				};
 
 				$.ajax({
-					url: "http://localhost:8080/api/Users_master/login",
+					url: "http://localhost:8080/api/Users_master/authenticate",
 					type: "POST",
 					contentType: "application/json",
 					data: JSON.stringify(loginData),
 					success: function(response) {
 
 						console.log("Login Response:", response);
+						console.log("Address part of response:", response.address);
 
-          				const firstName = response.firstName || "";
-          				const lastName = response.lastName || "";
-          				const fullName = (firstName + " " + lastName).trim();
+          				// const firstName = response.firstName || "";
+          				// const lastName = response.lastName || "";
+          				// const fullName = (firstName + " " + lastName).trim();
 						localStorage.setItem("userId", response.userId);
 						localStorage.setItem("firstName", response.firstName);
 						localStorage.setItem("lastName", response.lastName);
 						localStorage.setItem("userPhoneNumber", response.userPhoneNumber);
 						localStorage.setItem("userEmail", response.userEmail);
 						localStorage.setItem("userName", response.userName);
-						localStorage.setItem("userPassword", loginData.userPassword); // password from input
-						
+						//localStorage.setItem("userPassword", loginData.userPassword); // password from input
+						localStorage.setItem("addressDto", JSON.stringify(response.address));
 
-					
+
+
 						alert("Login successful!");
 						window.location.href = "./HTML/dashboard.html";
 					},
