@@ -57,18 +57,14 @@ $(document).ready(function () {
     });
   
 
-    // //view
-    // $(document).on("click", ".view-user", function () {
-    //   const userId = $(this).closest('tr').data('user-id');
-    //   localStorage.setItem('selectedUserId', userId);
-    //   window.location.href = 'view_particular_user.html';
-    // });
+   
   });
-  
-  function editUser(id) {
-    alert("Edit user with ID: " + id);
-  }
+// ----------------------------------------------------------------------- 
+function editUser(id) {
+  window.location.href = `user_edit.html?userId=${id}`;
+}
 
+// ------------------------------------------------------------------------
 
   $(document).on("click", ".view-user", function () {
     const userId = $(this).closest('tr').data('user-id');

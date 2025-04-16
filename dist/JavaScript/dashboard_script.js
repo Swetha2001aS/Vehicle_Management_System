@@ -27,7 +27,12 @@ $(document).ready(function () {
     e.preventDefault();
     $('#mainContent').load('./view_all_user.html').show();
     $('#profileSection, .about-section').hide();
+
   });
+
+
+
+
 
   // Show Home Section
   $('#homeLink').on('click', function (e) {
@@ -64,6 +69,8 @@ $(document).ready(function () {
   $('#mainContent').show();
   $('#profileSection, .about-section').hide();
 
+
+
   // Fill profile details
   $("#profileUserId").text(localStorage.getItem("userId") || "Not Available");
   $("#profileFirstName").text(localStorage.getItem("firstName") || "Not Available");
@@ -71,10 +78,12 @@ $(document).ready(function () {
   $("#profileEmail").text(localStorage.getItem("userEmail") || "Not Available");
   $("#profilePhone").text(localStorage.getItem("userPhoneNumber") || "Not Available");
 
+
+
   // Load addresses
   let addressList = [];
   try {
-    addressList = JSON.parse(localStorage.getItem("address")) || [];
+    addressList = JSON.parse(localStorage.getItem("addressDto")) || [];
   } catch (e) {
     console.error("Error parsing addressDto from localStorage:", e);
   }
@@ -89,6 +98,47 @@ $(document).ready(function () {
   }
 
   $("#profileUserAddress").html(addressHtml);
+
+
+
+  // ----------------upload image --------------------
+
+  $(document).ready(function () {
+  // Load upload image page into main content area
+  $('a[href="../HTML/upload_image.html"]').on('click', function (e) {
+    e.preventDefault();
+    $('.nav-link').removeClass('active');
+    $('#mainContent').load('../HTML/upload_image.html');
+  });
+});
+
+  // --------display profile pic -------------
+  $(document).ready(function () {
+    var userId = localStorage.getItem("userId"); // Or get from session if different
+
+    if (!userId) return;
+
+    $.ajax({
+        url: "http://localhost:8080/user/" + userId + "/profileImage",
+        type: "GET",
+        xhrFields: {
+            responseType: 'blob'
+        },
+        success: function (data) {
+            var url = URL.createObjectURL(data);
+            $('#profileImage').attr('src', url).show();
+            $('#userIcon').hide();
+        },
+        error: function () {
+            // Show default icon if image not found
+            console.log("Profile image not found. Using default icon.");
+        }
+    });
+});
+  
+
+
+
 });
 
 

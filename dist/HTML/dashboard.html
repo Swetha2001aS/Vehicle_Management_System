@@ -12,7 +12,8 @@
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="../CSS/dashboad_style.css">
 
-//<script src="../JavaScript/script.js" ></script>
+<script src="../JavaScript/script.js" ></script>
+<script src="../JavaScript/upload_image_script.js" ></script>
 <script src="../JavaScript/dashboard_script.js" ></script>
 
 
@@ -33,20 +34,23 @@
     <!-- Main Content -->
     <div class="content">
     <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg">
-          <div class="container-fluid justify-content-end">
-            <div class="navbar-text me-3" id="welcomeUser">Welcome, User</div>
-            <div class="dropdown">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid justify-content-end">
+          <div class="navbar-text me-3" id="welcomeUser">Welcome, User</div>
+          <div class="dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user-circle fa-2x"></i>
+                  <!-- Initially hidden image, will replace icon after upload -->
+                  <img id="profileImage"  class="fa-2x rounded-circle" alt="Profile" style="display:none;">
+                  <i id="userIcon" class="fas fa-user-circle fa-2x"></i> <!-- Default user icon -->
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="#">Upload Image</a></li>
-                <li><a class="dropdown-item" href="#" id="logoutLink">Logout</a></li>
+                  <li><a class="dropdown-item" href="./upload_image.html">Upload Image</a></li>
+                  <li><a class="dropdown-item" href="#" id="logoutLink">Logout</a></li>
               </ul>
-            </div>
           </div>
-        </nav>
+      </div>
+  </nav>
+  
     <!-- home page section -->
         <div class="main-content" id="mainContent">
         <section class="home-section">
