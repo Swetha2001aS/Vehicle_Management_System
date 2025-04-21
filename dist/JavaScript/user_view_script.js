@@ -37,7 +37,7 @@ $(document).ready(function () {
       }
     });
   
-
+// -------------------------------soft delete-----------------------------------------
     //delete
     $(document).on("click", ".delete-btn", function () {
       const userId = $(this).data("user-id");
@@ -64,7 +64,7 @@ function editUser(id) {
   window.location.href = `user_edit.html?userId=${id}`;
 }
 
-// ------------------------------------------------------------------------
+// ---------------------------view user details---------------------------------------------
 
   $(document).on("click", ".view-user", function () {
     const userId = $(this).closest('tr').data('user-id');
@@ -137,3 +137,5 @@ $(document).on("click", ".view-user", function () {
 
   });
 });
+
+

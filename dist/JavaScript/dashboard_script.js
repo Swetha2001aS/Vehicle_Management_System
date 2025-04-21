@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   // Sidebar hover effect
   $("#sidebar").hover(
@@ -30,6 +31,20 @@ $(document).ready(function () {
 
   });
 
+  // Handle User Role button click
+$('.action-btn:contains("User Role")').click(function (e) {
+  e.preventDefault();
+  $('#mainContent').load('../HTML/user_role.html').show(); // Load user_role.html
+  $('#profileSection, .about-section').hide(); // Hide other sections
+});
+
+
+// Handle Add Vehicle button click
+$('.action-btn:contains("Add Vehicles")').click(function (e) {
+  e.preventDefault();
+  $('#mainContent').load('../HTML/add_vehicle.html').show(); // your form page
+  $('#profileSection, .about-section').hide();
+});
 
 
 
@@ -137,8 +152,101 @@ $(document).ready(function () {
 });
   
 
+$(document).ready(function () {
+  const sidebar = $('#sidebar');
+
+  sidebar.on('mouseenter', function () {
+    $(this).addClass('expanded');
+  });
+
+  sidebar.on('mouseleave', function () {
+    $(this).removeClass('expanded');
+  });
+
+
+  // ------------------dashboard modify --------------------
+
+  // const ctx = document.getElementById('vehicleChart').getContext('2d');
+  // new Chart(ctx, {
+  //   type: 'bar',
+  //   data: {
+  //     labels: ['Car A', 'Car B', 'Car C', 'Car D'],
+  //     datasets: [{
+  //       label: 'No. of Bookings',
+  //       data: [12, 19, 3, 5],
+  //       backgroundColor: '#006a71'
+  //     }]
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true
+  //       }
+  //     }
+  //   }
+  // });
+});
+
+// ------------------dashboard modify  with chart2--------------------
+
+const ctx1 = document.getElementById('vehicleChart');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['Car A', 'Car B', 'Car C', 'Car D'],
+        datasets: [{
+          label: 'No. of Bookings',
+          data: [12, 19, 3, 5],
+          backgroundColor: '#006a71'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    const ctx2 = document.getElementById('revenueChart');
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        datasets: [{
+          label: 'Revenue (in Rs.)',
+          data: [5000, 7000, 4000, 9000, 11000],
+          fill: false,
+          borderColor: '#006a71',
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+      }
+    });
+
+
+    // -------------Registered Users-------------------
+
+    fetch("http://localhost:8080/user/all")
+    .then(response => response.json())
+    .then(data => {
+      const count = data.length;
+      document.getElementById("userCount").textContent = count;
+    })
+    .catch(error => {
+      console.error("Error fetching user count:", error);
+      document.getElementById("userCount").textContent = "Error";
+    });
+
+
+
 
 
 });
-
-
