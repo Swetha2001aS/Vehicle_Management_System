@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Users</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+  <script src="../JavaScript/user_view_script.js" ></script>
+  <script src="../JavaScript/user_edit_script.js" ></script>
+  <!-- <link rel="stylesheet" href="../CSS/view_particular_user_style.css"> -->
+  <link rel="stylesheet" href="../CSS/user_edit_style.css">
+
+
+  
+  
+</head>
+<body>
+
+
+    <a href="#" class="back-button" onclick="goBack()">← Back</a>
+
+    <form id="registrationForm">
+
+        <!-- 👤 Personal Information -->
+        <fieldset class="section-box">
+          <legend>Personal Information</legend>
+      
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstname">First Name</label>
+              <input type="text" id="firstname" name="firstname" placeholder="Enter first name" class="firstname" />
+            </div>
+            <div class="form-group">
+              <label for="lastname">Last Name</label>
+              <input type="text" id="lastname" name="lastname" placeholder="Enter last name" class="lastname" />
+            </div>
+          </div>
+      
+          <div class="form-row center-row">
+            <div class="form-group medium-input">
+              <label for="phone">Phone</label>
+              <input type="text" id="phone" name="phone" placeholder="Enter phone number" class="phone" />
+            </div>
+          </div>
+        </fieldset>
+      
+        <!-- 🔐 Account Details -->
+        <fieldset class="section-box">
+          <legend>Account Details</legend>
+      
+          <div class="form-row">
+            <div class="form-group">
+              <label for="register-username">Username</label>
+              <input type="text" id="register-username" name="username" placeholder="Enter username" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter email" />
+            </div>
+          </div>
+      
+          <div class="form-row">
+            <div class="form-group">
+              <label for="register-password">Password</label>
+              <input type="password" id="register-password" name="password" placeholder="Enter password" />
+              <i id="toggle-password" class="fa fa-eye"></i>
+
+              
+            </div>
+            <div class="form-group">
+              <label for="confirm_password">Repeat Password</label>
+              <input type="password" id="confirm_password" name="confirm_password" placeholder="Repeat password" />
+              <i id="toggle-confirm-password" class="fa fa-eye"></i>
+
+            </div>
+          </div>
+        </fieldset>
+      
+        <!-- 🌍 Address Details -->
+        <fieldset class="section-box">
+          <legend>Address Information</legend>
+      
+          <div class="address-container" >
+            <div class="address-section">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nation">Nation</label>
+                  <select id="nation" class="country-select" name="country">
+                    <option disabled selected>Select Country</option>
+                    <option value="IND">India</option>
+                    <option value="USA">USA</option>
+                    <option value="UK">UK</option>
+                    <option value="CAN">Canada</option>
+                    <option value="AUS">Australia</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="state">State</label>
+                  <select id="state1" class="state-select">
+                    <option disabled selected>Select Country First</option>
+                  </select>
+                </div>
+              </div>
+      
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="district">District</label>
+                  <select id="district2" class="district-select">
+                    <option disabled selected>Select State First</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="pincode">Pincode</label>
+                  <input type="text" id="pincode" name="pincode" placeholder="Enter Pincode" />
+                </div>
+              </div>
+      
+              <div class="form-row center-row">
+                <button type="button" class="remove-address-btn">Remove</button>
+              </div>
+            </div>
+          </div>
+      
+          <div class="form-row center-row">
+            <button type="button" class="add-address-btn">Add Address</button>
+          </div>
+        </fieldset>
+      
+        <!-- 👤 Role Selection -->
+        
+      
+        <!-- Submit Button -->
+        <div class="form-row center-row">
+          <button type="submit" id="save-btn1" class="register-btn">Register</button>
+        </div>
+      </form>
+
+
+
+     
+      
+
+
+
+</body>
+</html>
