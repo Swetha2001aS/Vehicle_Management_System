@@ -27,7 +27,7 @@ $(document).ready(function () {
   $('#viewUserBtn, .action-btn:contains("View User List")').click(function (e) {
     e.preventDefault();
     $('#mainContent').load('./view_all_user.html').show();
-    $('#profileSection, .about-section,#vehicleContainer').hide();
+    $('#profileSection, .about-section,#vehicleViewContainer').hide();
 
   });
 
@@ -35,17 +35,16 @@ $(document).ready(function () {
 $('.action-btn:contains("User Role")').click(function (e) {
   e.preventDefault();
   $('#mainContent').load('./user_role.html').show(); // Load user_role.html
-  $('#profileSection, .about-section,#vehicleContainer').hide(); // Hide other sections
+  $('#profileSection, .about-section,#vehicleViewContainer').hide(); // Hide other sections
 });
 
 
-// // Handle Add Vehicle button click
-// $('.action-btn:contains("Add Vehicles")').click(function (e) {
-//   e.preventDefault();
-//   $('#mainContent, .about-section, #profileSection').show();
-//   $('.view-vehicle-container').load('./view_vehicle_list.html').show();
-  
-// });
+// Handle Add Vehicle button click
+$('.action-btn:contains("Add Vehicles")').click(function (e) {
+  e.preventDefault();
+  $('#mainContent').load('../HTML/add_vehicle.html').show(); // your form page
+  $('#profileSection, .about-section,#vehicleViewContainer').hide();
+});
 
 
 
@@ -67,19 +66,19 @@ $('.action-btn:contains("User Role")').click(function (e) {
     $('.nav-link').removeClass('active');
     $(this).addClass('active');
 
-    $('#mainContent, .about-section , .view-vehicle-container').hide();
+    $('#mainContent, .about-section,#vehicleViewContainer').hide();
     $('#profileSection').show();
   });
 
   // Show Vehicle Section
-  $('#vehicleLink').on('click', function (e) {
-    e.preventDefault();
-    $('.nav-link').removeClass('active');
-    $(this).addClass('active');
-  
-    $('#mainContent, .about-section, #profileSection').hide();
-    $('#vehicleContainer').load('./view_vehicle_list.html').show();
-  });
+$('#vehicleLink').on('click', function (e) {
+  e.preventDefault();
+  $('.nav-link').removeClass('active');
+  $(this).addClass('active');
+
+  $('#mainContent, .about-section, #profileSection').hide();
+  $('#vehicleViewContainer').show().load('./view_vehicle_list.html');
+});
 
 
   // Show About Section
@@ -88,13 +87,13 @@ $('.action-btn:contains("User Role")').click(function (e) {
     $('.nav-link').removeClass('active');
     $(this).addClass('active');
 
-    $('#mainContent, #profileSection').hide();
+    $('#mainContent, #profileSection,#vehicleViewContainer').hide();
     $('.about-section').show();
   });
 
   // Load default Home Section on page load
   $('#mainContent').show();
-  $('#profileSection, .about-section,.view-vehicle-container').hide();
+  $('#profileSection, .about-section,#vehicleViewContainer').hide();
 
 
 
