@@ -230,7 +230,7 @@ body {
   display: inline-block;
   background: 0;
   width: 200px;
-  border: 2px solid #e3e3e3;
+  border: 2px solid #006a71;
   padding: 10px 0;
   font-size: 20px;
   font-weight: 600;
@@ -250,7 +250,7 @@ body {
 .card .button-container button span {
   position: relative;
   z-index: 1;
-  color: #ddd;
+  color: #006a71;
   transition: 0.3s ease;
 }
 .card .button-container button:before {

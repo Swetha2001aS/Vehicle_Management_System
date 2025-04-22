@@ -27,24 +27,25 @@ $(document).ready(function () {
   $('#viewUserBtn, .action-btn:contains("View User List")').click(function (e) {
     e.preventDefault();
     $('#mainContent').load('./view_all_user.html').show();
-    $('#profileSection, .about-section').hide();
+    $('#profileSection, .about-section,#vehicleContainer').hide();
 
   });
 
   // Handle User Role button click
 $('.action-btn:contains("User Role")').click(function (e) {
   e.preventDefault();
-  $('#mainContent').load('../HTML/user_role.html').show(); // Load user_role.html
-  $('#profileSection, .about-section').hide(); // Hide other sections
+  $('#mainContent').load('./user_role.html').show(); // Load user_role.html
+  $('#profileSection, .about-section,#vehicleContainer').hide(); // Hide other sections
 });
 
 
-// Handle Add Vehicle button click
-$('.action-btn:contains("Add Vehicles")').click(function (e) {
-  e.preventDefault();
-  $('#mainContent').load('../HTML/add_vehicle.html').show(); // your form page
-  $('#profileSection, .about-section').hide();
-});
+// // Handle Add Vehicle button click
+// $('.action-btn:contains("Add Vehicles")').click(function (e) {
+//   e.preventDefault();
+//   $('#mainContent, .about-section, #profileSection').show();
+//   $('.view-vehicle-container').load('./view_vehicle_list.html').show();
+  
+// });
 
 
 
@@ -66,9 +67,20 @@ $('.action-btn:contains("Add Vehicles")').click(function (e) {
     $('.nav-link').removeClass('active');
     $(this).addClass('active');
 
-    $('#mainContent, .about-section').hide();
+    $('#mainContent, .about-section , .view-vehicle-container').hide();
     $('#profileSection').show();
   });
+
+  // Show Vehicle Section
+  $('#vehicleLink').on('click', function (e) {
+    e.preventDefault();
+    $('.nav-link').removeClass('active');
+    $(this).addClass('active');
+  
+    $('#mainContent, .about-section, #profileSection').hide();
+    $('#vehicleContainer').load('./view_vehicle_list.html').show();
+  });
+
 
   // Show About Section
   $('.nav-link:contains("About")').on('click', function (e) {
@@ -82,7 +94,7 @@ $('.action-btn:contains("Add Vehicles")').click(function (e) {
 
   // Load default Home Section on page load
   $('#mainContent').show();
-  $('#profileSection, .about-section').hide();
+  $('#profileSection, .about-section,.view-vehicle-container').hide();
 
 
 

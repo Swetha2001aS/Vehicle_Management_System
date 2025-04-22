@@ -360,6 +360,17 @@ h4 {
   color: #555;
 }
 
+.view-vehicle-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+
+
 @keyframes slideUp {
   from {
     opacity: 0;

@@ -24,12 +24,13 @@
         <div class="sidebar" id="sidebar">
             <a href="#" id="homeLink" class="nav-link nav-item mb-3"><i class="fas fa-home"></i> <span>Home</span></a>
             <a href="#" id="profileLink" class="nav-link nav-item mb-3"><i class="fas fa-user"></i> <span>Profile</span></a>
+            <a href="#" id="vehicleLink" class="nav-link nav-item mb-3"><i class="fas fa-car-side"></i> <span>Vehicles</span></a>
             <a href="#" class="nav-link nav-item mb-3"><i class="fas fa-info-circle"></i> <span>About</span></a>
             <a href="#" class="nav-link nav-item mb-3"><i class="fas fa-envelope"></i> <span>Contact</span></a>
             <a href="#" class="nav-link nav-item mb-3"><i class="fas fa-cog"></i> <span>Settings</span></a>
         </div>
 
-       
+        
     <!-- Main Content -->
     <div class="content">
     <!-- Navbar -->
@@ -167,11 +168,17 @@
           </div>
         </section>
 
+<!--  -->
 
 
 
 
       </div>
+             
+<section>
+  <div class="view-vehicle-container" id="vehicleContainer">hlooo</div>
+</div>
+</section>
     </div>
   
 
@@ -184,16 +191,17 @@
         sidebar.addEventListener('mouseleave', () => sidebar.classList.remove('expanded'));
     });
     </script>
-    <!-- <script>
+    <script>
       $(function() {
         $("#navbar-placeholder").load("../HTML/navbar.html");
         $("#sidebar-placeholder").load("../HTML/sidebar.html");
       });
-    </script> -->
+    </script>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-   
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
     <script src="../JavaScript/script.js" ></script>
     <script src="../JavaScript/upload_image_script.js" ></script>
     <script src="../JavaScript/dashboard_script.js" ></script>

@@ -1,16 +1,11 @@
-
-/* add_vehicle_style.css */
 .add-vehicle-container {
-    max-width: 550px;
+    max-width: 750px;
     margin: 30px auto;
     padding: 30px;
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.6s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   
   .form-title {
@@ -22,29 +17,40 @@
   
   form {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
   
   .form-group {
     width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
+  }
+  
+  .full-width {
+    grid-column: 1 / 3;
   }
   
   input[type="text"],
   input[type="number"],
-  input[type="file"] {
+  input[type="file"],
+  textarea {
     width: 100%;
     padding: 12px;
     border: 1.5px solid #ccc;
     border-radius: 8px;
-    transition: 0.3s ease;
     font-size: 16px;
   }
   
-  input:focus {
+  textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  input:focus,
+  textarea:focus {
     border-color: #006a71;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 106, 113, 0.4);
@@ -58,6 +64,7 @@
   }
   
   .submit-btn {
+    margin-top: 20px;
     background-color: #006a71;
     color: white;
     padding: 12px 25px;
@@ -66,51 +73,14 @@
     border-radius: 8px;
     cursor: pointer;
     width: 100%;
-    max-width: 400px;
     transition: background 0.3s;
   }
   
   .submit-btn:hover {
     background-color: #004f53;
   }
-
-  /* Style for error messages */
-
-
-/* Style for success messages */
-label .success-message {
-    color: #28a745;
-    font-size: 14px;
-    margin-bottom: 10px;
-    display: block;
-}
-
-/* Add hover effect for input fields */
-input[type="text"]:hover,
-input[type="number"]:hover,
-input[type="file"]:hover {
-    border-color: #004f53;
-    box-shadow: 0 0 8px rgba(0, 79, 83, 0.3);
-}
-
-/* Style for disabled submit button */
-.submit-btn:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* Add spacing between form groups */
-.form-group {
-    margin-bottom: 25px;
-}
-
-/* Add focus effect for labels */
-label:focus-within {
-    color: #006a71;
-    font-weight: bold;
-}
-
-label.error {
+  
+  label.error {
     color: #ff4d4d;
     font-size: 14px;
     margin-top: 1px;
@@ -118,32 +88,9 @@ label.error {
     display: block;
   }
   
-  
-
-/* Add responsive design for smaller screens */
-@media (max-width: 600px) {
-    .add-vehicle-container {
-        padding: 20px;
-    }
-
-    .form-title {
-        font-size: 22px;
-    }
-
-    .submit-btn {
-        font-size: 14px;
-        padding: 10px 20px;
-    }
-}
-  
-  @keyframes fadeIn {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0px);
-      opacity: 1;
+  @media (max-width: 700px) {
+    .form-grid {
+      grid-template-columns: 1fr;
     }
   }
   
