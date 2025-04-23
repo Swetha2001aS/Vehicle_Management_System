@@ -175,28 +175,6 @@ $(document).ready(function () {
   });
 
 
-  // ------------------dashboard modify --------------------
-
-  // const ctx = document.getElementById('vehicleChart').getContext('2d');
-  // new Chart(ctx, {
-  //   type: 'bar',
-  //   data: {
-  //     labels: ['Car A', 'Car B', 'Car C', 'Car D'],
-  //     datasets: [{
-  //       label: 'No. of Bookings',
-  //       data: [12, 19, 3, 5],
-  //       backgroundColor: '#006a71'
-  //     }]
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true
-  //       }
-  //     }
-  //   }
-  // });
 });
 
 // ------------------dashboard modify  with chart2--------------------

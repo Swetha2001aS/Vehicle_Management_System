@@ -1,0 +1,170 @@
+/* General Styles */
+body.dashboard-body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px;
+    background-color: #006a71; /* Updated color */
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .sidebar.expanded {
+    width: 200px;
+  }
+  
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #004d53; /* Slightly darker shade for hover effect */
+  }
+  
+  .sidebar i {
+    margin-right: 10px;
+    min-width: 20px;
+    text-align: center;
+  }
+  
+  .sidebar span {
+    display: none;
+    transition: opacity 0.3s;
+  }
+  
+  .sidebar.expanded span {
+    display: inline;
+    opacity: 1;
+  }
+  
+
+  
+.sidebar .nav-link.active {
+    background-color: black;
+    color: #006a71 !important;
+    transform: scale(1.08);
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 106, 113, 0.3);
+  }
+  
+  .sidebar .nav-link.active i,
+  .sidebar .nav-link.active span {
+    color: #006a71 !important;
+  }
+  
+  /* Content area */
+  .content {
+    margin-left: 60px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .sidebar.expanded ~ .content {
+    margin-left: 200px;
+  }
+
+
+  .adjust-side-container{
+    top:12px;
+        margin-top: 67px;
+
+  }
+  
+  /* Page Content Wrapper */
+  #page-content-wrapper {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .navbar .navbar-text {
+    color: #006a71; /* Updated color for the navbar text */
+  }
+  
+  /* Dropdown Styles */
+  .navbar .dropdown-menu {
+    background-color: #006a71; /* Match dropdown with sidebar color */
+  }
+  
+  .navbar .dropdown-menu a {
+    color: #fff;
+  }
+  
+  .navbar .dropdown-menu a:hover {
+    background-color: #004d53; /* Slightly darker shade for hover effect */
+  }
+
+   /* Centering the brand using flex */
+   .navbar-brand {
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* This will center the text */
+  }
+
+  
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .sidebar {
+      min-width: 100px;
+      max-width: 100px;
+      padding: 10px;
+    }
+  
+    .sidebar .nav-link {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+  
+    .sidebar a {
+      padding: 10px; /* Adjust padding for smaller screen */
+    }
+  
+    .sidebar.expanded {
+      width: 150px; /* Adjust expanded width for smaller screens */
+    }
+  
+    .content {
+      margin-left: 100px; /* Adjust content margin for smaller screens */
+      padding: 15px;
+    }
+  
+    #page-content-wrapper {
+      padding: 10px;
+    }
+  
+    /* Adjust navbar for smaller screens */
+    .navbar {
+      padding: 8px 16px;
+    }
+  
+    .navbar .navbar-text {
+      font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+  }
+  

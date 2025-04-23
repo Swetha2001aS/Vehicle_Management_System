@@ -338,21 +338,34 @@ $(document).ready(function() {
 						localStorage.setItem("userName", response.userName);
 						//localStorage.setItem("userPassword", loginData.userPassword); // password from input
 						localStorage.setItem("addressDto", JSON.stringify(response.address));
+						
 
-
-
-						alert("Login successful!");
-						window.location.href = "./HTML/dashboard.html";
+						setTimeout(() => {
+							const roleId = response.usermasterdto.userRole;
+							console.log("----",roleId);
+			
+							if (roleId === "1" ) {
+								alert("Login successful! Redirecting to Manger Dashboard.");
+								window.location.href = "../HTML/manger.html";
+							} else if (roleId === "2") {
+								alert("Login successful! Redirecting to customer Dashboard.");
+								window.location.href = "../HTML/customer_home_page.html";
+							} else if (roleId === "3") {
+								alert("Login successful! Redirecting to CRE Dashboard.");
+								window.location.href = "../HTML/CRE.html";
+							} else if (roleId === "4") {
+								alert("Login successful! Redirecting to Admin Dashboard.");
+								window.location.href = "../HTML/dashboard.html";
+							} else {
+								alert("Unauthorized role. Please contact support.");
+							}
+						}, 1000);
 					},
 					error: function(xhr, status, error) {
-						console.log("Error Status:", status);
+						alert("Login failed. Please check your credentials.");
 						console.log("Error:", error);
-						console.log("Full Response:", xhr.responseText);
-						alert("Invalid username or password");
 					}
 				});
 			}
 		});
 	});
-	
-

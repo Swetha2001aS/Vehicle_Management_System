@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Vehicle</title>
+  <link rel="stylesheet" href="../CSS/booking_vehicle_style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Dashboard</h2>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="vehicle_list.html">Vehicles</a></li>
+      <li><a href="bookings.html">Bookings</a></li>
+    </ul>
+  </div>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Vehicle Booking</h1>
+  </div>
+
+  <!-- Booking Form -->
+  <div class="main-content">
+    <form id="bookingForm">
+      <label for="userId">User ID:</label>
+      <input type="number" id="userId" name="userId" required><br>
+
+      <label for="vehicleId">Vehicle ID:</label>
+      <input type="number" id="vehicleId" name="vehicleId" readonly><br>
+
+      <label for="bookingId">Booking ID:</label>
+      <input type="number" id="bookingId" name="bookingId" required><br>
+
+      <label for="bookingDate">Booking Date:</label>
+      <input type="date" id="bookingDate" name="bookingDate" required><br>
+
+      <label for="estimatedDeliveryDate">Estimated Delivery Date:</label>
+      <input type="date" id="estimatedDeliveryDate" name="estimatedDeliveryDate" required><br>
+
+      <label for="status">Booking Status (P/C):</label>
+      <input type="text" id="status" name="status" maxlength="1" required><br>
+
+      <label for="paymentStatus">Payment Status (P/C):</label>
+      <input type="text" id="paymentStatus" name="paymentStatus" maxlength="1" required><br>
+
+      <button type="submit">Submit Booking</button>
+    </form>
+  </div>
+
+  <script src="../JavaScript/booking_vehicle_script.js"></script>
+</body>
+</html>

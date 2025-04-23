@@ -1,43 +1,61 @@
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:8080/vehicles/all')
-      .then(res => res.json())
-      .then(data => displayVehicles(data))
-      .catch(err => console.error('Error fetching vehicle list:', err));
+$(document).ready(function () {
+  $.ajax({
+    url: 'http://localhost:8080/vehicles/all',
+    method: 'GET',
+    success: function (vehicles) {
+      displayVehicles(vehicles);
+      $('#vehicleContainer').fadeIn(); // Show container after loading
+    },
+    error: function (xhr, status, error) {
+      console.log("---", xhr.responseText);
+      console.error('Error fetching vehicle list:', error);
+      $('#vehicleContainer').text('Failed to load vehicles.').show();
+    }
   });
-  
+
   function displayVehicles(vehicles) {
-    const container = document.getElementById('vehicleContainer');
-    container.innerHTML = '';
-  
+    const $container = $('#vehicleContainer');
+    $container.empty();
+
     vehicles.forEach(vehicle => {
-      const card = document.createElement('div');
-      card.className = 'vehicle-card';
-  
-      const image = document.createElement('img');
-      image.className = 'vehicle-image';
-      image.src = `http://localhost:8080/vehicles/${vehicle.id}/image`;
-      image.alt = vehicle.name || 'Vehicle';
-  
-      const info = document.createElement('div');
-      info.className = 'vehicle-info';
-  
-      const title = document.createElement('div');
-      title.className = 'vehicle-title';
-      title.textContent = vehicle.name || 'Unnamed Vehicle';
-  
-      const details = document.createElement('div');
-      details.className = 'vehicle-details';
-      details.innerHTML = `
-        Type: ${vehicle.type || 'N/A'}<br>
-        Model: ${vehicle.model || 'N/A'}<br>
-        Year: ${vehicle.year || 'N/A'}
-      `;
-  
-      info.appendChild(title);
-      info.appendChild(details);
-      card.appendChild(image);
-      card.appendChild(info);
-      container.appendChild(card);
+      const $card = $('<div>', { class: 'vehicle-card' }).css('opacity', 0);
+
+      const $image = $('<img>', {
+        class: 'vehicle-image',
+        src: `http://localhost:8080/vehicles/${vehicle.id}/image`,
+        alt: vehicle.name || 'Vehicle'
+      }).on('error', function () {
+        $(this).attr('src', 'https://img.icons8.com/color/270x180/car--v1.png');
+      });
+
+      const $info = $('<div>', { class: 'vehicle-info' });
+      const $title = $('<div>', { class: 'vehicle-title', text: vehicle.name || 'Unnamed Vehicle' });
+      const $details = $('<div>', {
+        class: 'vehicle-details',
+        html: `
+          Brand: ${vehicle.brand || 'N/A'}<br>
+          Model: ${vehicle.model || 'N/A'}<br>
+          Price: ₹${vehicle.price || 'N/A'}<br>
+          Fuel: ${vehicle.fuelType || 'N/A'}<br>
+          Transmission: ${vehicle.transmissionType || 'N/A'}<br>
+          City: ${vehicle.city || 'N/A'}<br>
+          Dealer: ${vehicle.dealership || 'N/A'}<br>
+          <em>${vehicle.description || ''}</em>
+        `
+      });
+
+      const $button = $('<button>', {
+        class: 'book-btn',
+        text: 'Book Now',
+        click: function () {
+          window.location.href = `book_vehicle.html?vehicleId=${vehicle.id}`;
+        }
+      });
+
+      $info.append($title, $details);
+      $card.append($image, $info, $button);
+      $container.append($card);
+      $card.animate({ opacity: 1 }, 500); // Smooth fade-in
     });
   }
-  
+});
