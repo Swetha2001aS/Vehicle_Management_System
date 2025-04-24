@@ -233,9 +233,17 @@ const ctx1 = document.getElementById('vehicleChart');
       console.error("Error fetching user count:", error);
       document.getElementById("userCount").textContent = "Error";
     });
+});
 
-
-
-
-
+$(document).ready(function () {
+  $.ajax({
+    url: "http://localhost:8080/vehicles/all",
+    method: "GET",
+    success: function (data) {
+      $(".stat-card-value").text(data.length);
+    },
+    error: function () {
+      console.error("Failed to fetch vehicle data.");
+    }
+  });
 });

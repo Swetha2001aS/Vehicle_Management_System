@@ -1,74 +1,48 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    display: flex;
-  }
-  
-  .sidebar {
-    width: 200px;
-    background-color: #222;
-    color: white;
-    height: 100vh;
-    padding: 20px;
-  }
-  
-  .sidebar h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar li {
-    margin: 10px 0;
-  }
-  
-  .sidebar a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navbar {
-    background-color: #006a71;
-    color: white;
-    padding: 15px;
-    position: fixed;
-    width: 100%;
-    left: 200px;
-    top: 0;
-  }
-  
-  .main-content {
-    margin-left: 200px;
-    padding: 80px 20px 20px;
-    flex: 1;
-  }
-  
-  form {
-    max-width: 500px;
-    margin: auto;
-  }
-  
-  form label {
-    display: block;
-    margin-top: 15px;
-  }
-  
-  form input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-  }
-  
-  form button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #006a71;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f9f9f9;
+}
+
+.vehicle-card {
+  max-width: 700px;
+  background-color: #fff;
+  margin: auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 106, 113, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 106, 113, 0.3);
+}
+
+.vehicle-card h2 {
+  color: #006a71;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.vehicle-card p {
+  font-size: 16px;
+  color: #444;
+  margin: 8px 0;
+}
+
+.enquiry-btn {
+  background-color: #006a71;
+  color: white;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.enquiry-btn:hover {
+  background-color: #004e52;
+  transform: scale(1.05);
+}

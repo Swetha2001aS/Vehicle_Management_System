@@ -38,18 +38,22 @@ $(document).ready(function () {
             success: function (response) {
                 alert("Image uploaded successfully!");
                 console.log(response);
-                 // Replace the default user icon with the uploaded image
-                 $('#userIcon').hide(); // Hide the default user icon
-                 $('#profileImage').attr('src', response).show(); // Set the new profile image and show it
-                window.location.href = 'dashboard.html';
+
+                // Replace the default user icon with the uploaded image
+                $('#userIcon').hide();
+                $('#profileImage').attr('src', response).show();
+
+                // ✅ Go back to previous screen
+                window.history.back();
             },
             error: function (xhr, status, error) {
                 alert("Error uploading image. Please try again.");
-                $('#uploadBtn').text('Save').prop('disabled', false);  
+                $('#uploadBtn').text('Save').prop('disabled', false);
             }
         });
     });
 });
+
 
 
 // -----------back btn ------------

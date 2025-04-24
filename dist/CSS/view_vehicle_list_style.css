@@ -48,20 +48,31 @@ body {
   color: #444;
   line-height: 1.5;
 }
-
 .book-btn {
-  margin: 10px 15px 15px;
-  padding: 10px 15px;
-  background-color: #006a71;
+  margin: 20px auto;
+  padding: 12px 24px;
+  display: block;
+  background: linear-gradient(135deg, #006a71, #00b3b3);
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 106, 113, 0.3);
+  text-align: center;
 }
 
 .book-btn:hover {
-  background-color: #004e52;
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #005a5e, #00a3a3);
+  box-shadow: 0 6px 15px rgba(0, 106, 113, 0.5);
 }
+
+.book-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 106, 113, 0.4);
+}
+
 

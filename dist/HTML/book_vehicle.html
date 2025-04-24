@@ -3,52 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Book Vehicle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="../CSS/booking_vehicle_style.css">
+  <link rel="stylesheet" href="../CSS/customer_styles.css">
+  <link rel="icon" href="path/to/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
+
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>Dashboard</h2>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="vehicle_list.html">Vehicles</a></li>
-      <li><a href="bookings.html">Bookings</a></li>
-    </ul>
+  <div >
+    <div id="sidebar-placeholder"></div>
+    <div class="flex-grow-1">
+      <div id="navbar-placeholder"></div>
+  <!-- Main Content -->
+  <div class="main-content p-4">
+    <div id="vehicleDetails" class="vehicle-card animate__animated animate__fadeIn">
+      <!-- Vehicle details will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="enquiryBtn" class="enquiry-btn">Send Enquiry</button>
+    </div>
   </div>
+</div>
+</div>
+</div>
+  <!-- Load Navbar and Sidebar -->
+  <script>
+    $(function () {
+      $('#navbar-placeholder').load('../navbar.html');
+      $('#sidebar-placeholder').load('../sidebar.html');
+    });
+  </script>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <h1>Vehicle Booking</h1>
-  </div>
-
-  <!-- Booking Form -->
-  <div class="main-content">
-    <form id="bookingForm">
-      <label for="userId">User ID:</label>
-      <input type="number" id="userId" name="userId" required><br>
-
-      <label for="vehicleId">Vehicle ID:</label>
-      <input type="number" id="vehicleId" name="vehicleId" readonly><br>
-
-      <label for="bookingId">Booking ID:</label>
-      <input type="number" id="bookingId" name="bookingId" required><br>
-
-      <label for="bookingDate">Booking Date:</label>
-      <input type="date" id="bookingDate" name="bookingDate" required><br>
-
-      <label for="estimatedDeliveryDate">Estimated Delivery Date:</label>
-      <input type="date" id="estimatedDeliveryDate" name="estimatedDeliveryDate" required><br>
-
-      <label for="status">Booking Status (P/C):</label>
-      <input type="text" id="status" name="status" maxlength="1" required><br>
-
-      <label for="paymentStatus">Payment Status (P/C):</label>
-      <input type="text" id="paymentStatus" name="paymentStatus" maxlength="1" required><br>
-
-      <button type="submit">Submit Booking</button>
-    </form>
-  </div>
-
+  <!-- Custom Scripts -->
   <script src="../JavaScript/booking_vehicle_script.js"></script>
+  <script src="../JavaScript/customer_script.js"></script>
 </body>
 </html>

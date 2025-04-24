@@ -36,17 +36,13 @@ $(document).ready(function () {
           Brand: ${vehicle.brand || 'N/A'}<br>
           Model: ${vehicle.model || 'N/A'}<br>
           Price: ₹${vehicle.price || 'N/A'}<br>
-          Fuel: ${vehicle.fuelType || 'N/A'}<br>
-          Transmission: ${vehicle.transmissionType || 'N/A'}<br>
-          City: ${vehicle.city || 'N/A'}<br>
-          Dealer: ${vehicle.dealership || 'N/A'}<br>
-          <em>${vehicle.description || ''}</em>
+         
         `
       });
 
       const $button = $('<button>', {
         class: 'book-btn',
-        text: 'Book Now',
+        text: 'VIEW DETAILS',
         click: function () {
           window.location.href = `book_vehicle.html?vehicleId=${vehicle.id}`;
         }

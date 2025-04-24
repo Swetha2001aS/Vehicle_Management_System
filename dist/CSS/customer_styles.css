@@ -126,7 +126,83 @@ body.dashboard-body {
     transform: translateX(-50%); /* This will center the text */
   }
 
+  /* -------------------- PROFILE DROPDOWN -------------------- */
+.dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+#profileImage {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+#userIcon {
+  display: inline-block;
+}
   
+
+
+/* -------------------- PROFILE CARD -------------------- */
+.profile-card {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 106, 113, 0.2);
+  border-left: 5px solid #006a71;
+  animation: slideUp 0.6s ease-out;
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+
+.profile-card h2 {
+  color: #006a71;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.profile-card p {
+  font-size: 16px;
+  margin: 12px 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.profile-card strong {
+  color: #006a71;
+  font-weight: 600;
+}
+
+#profileUserAddress h4 {
+  margin-top: 25px;
+  color: #006a71;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+#profileUserAddress div {
+  background-color: #f0fafa;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border: 1px solid #ccecec;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+}
+
+#profileUserAddress div:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 106, 113, 0.2);
+}
+
+#profileUserAddress div span {
+  font-weight: 400;
+  color: #555;
+}
+
   
   /* Responsive Styles */
   @media (max-width: 768px) {

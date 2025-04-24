@@ -108,17 +108,7 @@ body {
 }
 
 
-.navbar-brand {
-  font-size: 2rem; /* Larger font for boldness */
-  font-family: 'Montserrat', sans-serif;
-  color: white;
-  font-weight: bold; /* Make the font bold */
-  text-align: center; /* Center the brand text */
-  width: 100%; /* Take full width for centering */
-  position: absolute; /* To center it within the navbar */
-  left: 0;
-  right: 0;
-}
+
 /* -------------------- BUTTON GROUP -------------------- */
 .home-section {
   padding: 40px 60px;
@@ -373,12 +363,16 @@ h4 {
 }
 
 .view-vehicle-container {
+  top: 12px;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   font-weight: bold;
+}
+.vehicle-section{
+  margin-top: 40px;
 }
 
 
