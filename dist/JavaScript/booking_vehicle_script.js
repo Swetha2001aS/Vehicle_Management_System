@@ -28,8 +28,60 @@ $(document).ready(function () {
   } else {
     $vehicleDetailsContainer.html('<p class="text-warning">No vehicle ID provided in URL.</p>');
   }
+  // $('#enquiryBtn').on('click', function () {
+  //   alert('Your enquiry has been sent! Our team will get back to you shortly.');
+  // });
 
-  $('#enquiryBtn').on('click', function () {
-    alert('Your enquiry has been sent! Our team will get back to you shortly.');
+
+
+
+
+ // Click event for the "Enquiry" button
+ $('#enquiryBtn').on('click', function () {
+  if (!userId) {
+    alert('User is not logged in.');
+    return;
+  }
+
+
+
+  const bookingData = {
+    userId: userId,  // Getting userId from localStorage
+    vehicleId: vehicleId,
+    status: 'ACTIVE',  // Example status
+    paymentStatus: 'P',  // Payment status (Pending)
+    estimatedDeliveryDate: '2025-05-01',  // Example estimated delivery date
+    amount: 500000,  // Example amount (can be fetched dynamically if needed)
+  };
+
+
+  // Send booking data to save in the Booking and Mapping tables
+  $.ajax({
+    url: 'http://localhost:8080/api/bookings/',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(bookingData),
+    success: function (response) {
+      alert('Your enquiry has been sent! Our team will get back to you shortly.');
+      // Optionally, redirect or update the UI
+    },
+    error: function () {
+      alert('Error while submitting your enquiry. Please try again later.');
+    }
   });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 });

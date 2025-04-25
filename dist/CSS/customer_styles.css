@@ -126,6 +126,43 @@ body.dashboard-body {
     transform: translateX(-50%); /* This will center the text */
   }
 
+
+/* -------------------------------BANNER & FOOTER---------------------------------------- */
+.banner-section {
+  width: 100%;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  animation: slideCars 15s infinite ease-in-out;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* dark overlay */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.banner-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.banner-subtitle {
+  font-size: 1.2rem;
+}
+
+
+
   /* -------------------- PROFILE DROPDOWN -------------------- */
 .dropdown-menu {
   right: 0;
@@ -242,5 +279,12 @@ body.dashboard-body {
     .navbar .navbar-text {
       font-size: 0.9rem; /* Adjust font size for smaller screens */
     }
+  }
+
+  @keyframes slideCars {
+    0%   { background-image: url('https://assets.gqindia.com/photos/6644932501e2ecdaa5138025/master/w_1600%2Cc_limit/Bugatti-Divo.jpg'); }
+    33%  { background-image: url('https://news.dupontregistry.com/wp-content/uploads/2023/01/05-BUGATTI_Jean_LaVoitureNoire.jpg'); }
+    66%  { background-image: url('https://i.ytimg.com/vi/xxMxhpdUA04/maxresdefault.jpg'); }
+    100% { background-image: url('https://www.spinny.com/blog/wp-content/uploads/2024/09/BugattiCentodieci-ezgif.com-optijpeg-1160x653.webp'); }
   }
   

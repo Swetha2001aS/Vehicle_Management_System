@@ -11,7 +11,7 @@ $(document).ready(function () {
             // Clear user data from localStorage
             localStorage.clear();
             // Redirect to login page
-            window.location.href = "login.html";
+            window.location.href = "../index.html";
         });
     });
 
@@ -32,8 +32,11 @@ $(document).ready(function () {
             e.preventDefault();
             $(".nav-link").removeClass("active");
             $(this).addClass("active");
-            $("#mainContent").show().load("../HTML/view_vehicle_list.html");
-            $("#profileSection, #vehicleViewContainer, .about-section").hide();
+        
+            // Show home content
+            $("#mainContent").show().load("../HTML/view_vehicle_list.html"); // Keep this for vehicle list
+            $("#banner").show(); // Show banner and footer
+            $("#profileSection, #vehicleViewContainer, .about-section").hide(); // Hide others
         });
 
         $("#profileLink").on("click", function (e) {
@@ -41,7 +44,7 @@ $(document).ready(function () {
             $(".nav-link").removeClass("active");
             $(this).addClass("active");
             $("#profileSection").show().load(".profile.html");
-            $("#mainContent, #vehicleViewContainer, .about-section").hide();
+            $("#mainContent, #vehicleViewContainer, .about-section,#banner").hide();
         });
 
         $("#vehicleLink").on("click", function (e) {
@@ -49,7 +52,7 @@ $(document).ready(function () {
             $(".nav-link").removeClass("active");
             $(this).addClass("active");
             $("#vehicleViewContainer").show().load("../HTML/view_vehicle_list.html");
-            $("#mainContent, #profileSection, .about-section").hide();
+            $("#mainContent, #profileSection, .about-section,#banner").hide();
         });
 
         $("#aboutLink").on("click", function (e) {
@@ -57,18 +60,23 @@ $(document).ready(function () {
             $(".nav-link").removeClass("active");
             $(this).addClass("active");
             $(".about-section").show().load("about.html");
-            $("#mainContent, #profileSection, #vehicleViewContainer").hide();
+            $("#mainContent, #profileSection, #vehicleViewContainer,#banner").hide();
         });
 
-        // Show Profile Section
-        $('#profileLink').on('click', function (e) {
-            e.preventDefault();
-            $('.nav-link').removeClass('active');
-            $(this).addClass('active');
-            $('#mainContent, .about-section, #vehicleViewContainer').hide();
-            $('#profileSection').show();
-        });
+        // // Show Profile Section
+        // $('#profileLink').on('click', function (e) {
+        //     e.preventDefault();
+        //     $('.nav-link').removeClass('active');
+        //     $(this).addClass('active');
+        //     $('#mainContent, .about-section, #vehicleViewContainer,#banner').hide();
+        //     $('#profileSection').show();
+        // });
+// Load default Home Section on page load
+// $('#mainContent').show();
+// $('#profileSection, .about-section,#vehicleViewContainer').hide();
 
+// Trigger default navigation
+$("#homeLink").trigger("click");
 
 
 
@@ -190,12 +198,9 @@ $(document).ready(function () {
     $("#logoutLink").on("click", function (e) {
         e.preventDefault();
         localStorage.clear();
-        window.location.href = "login.html";
+        window.location.href = "../index.html";
     });
 
-// Load default Home Section on page load
-$('#mainContent').show();
-$('#profileSection, .about-section,#vehicleViewContainer').hide();
 
 });
 

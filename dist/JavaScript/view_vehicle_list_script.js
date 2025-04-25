@@ -55,3 +55,65 @@ $(document).ready(function () {
     });
   }
 });
+
+
+
+// upload to databse
+$("#sendQueryBtn").on("click", function (e) {
+  e.preventDefault();
+
+  const vehicleId = getVehicleIdFromURL(); // Function to extract vehicleId from URL
+  const userId = localStorage.getItem("userId");
+
+  if (!vehicleId || !userId) {
+    alert("Missing vehicle ID or user ID.");
+    return;
+  }
+
+  const mappingData = {
+    vehicle: { id: vehicleId },
+    user: { id: userId }
+  };
+
+  const bookingData = {
+    vehicle: { id: vehicleId },
+    user: { id: userId },
+    status: "Pending" // Or any default status you want
+  };
+
+  // Post to Mapping Table
+  $.ajax({
+    url: "http://localhost:8080/api/mappings/",
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(mappingData),
+    success: function () {
+      console.log("Mapping added.");
+
+      // Now post to Booking Table
+      $.ajax({
+        url: "http://localhost:8080/api/bookings/",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(bookingData),
+        success: function () {
+          alert("Query submitted successfully!");
+        },
+        error: function (xhr) {
+          console.error("Booking failed:", xhr.responseText);
+          alert("Booking failed.");
+        }
+      });
+    },
+    error: function (xhr) {
+      console.error("Mapping failed:", xhr.responseText);
+      alert("Mapping failed.");
+    }
+  });
+
+  function getVehicleIdFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("vehicleId");
+  }
+});
+
