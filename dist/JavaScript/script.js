@@ -336,12 +336,13 @@ $(document).ready(function() {
 						localStorage.setItem("userPhoneNumber", response.userPhoneNumber);
 						localStorage.setItem("userEmail", response.userEmail);
 						localStorage.setItem("userName", response.userName);
+
 						//localStorage.setItem("userPassword", loginData.userPassword); // password from input
 						localStorage.setItem("addressDto", JSON.stringify(response.address));
-						
+						localStorage.setItem("userRole",response.usermasterdto.userRole)
 
 						setTimeout(() => {
-							const roleId = response.usermasterdto.userRole;
+							const roleId = localStorage.getItem("userRole");  // Corrected here
 							console.log("----",roleId);
 			
 							if (roleId === "1" ) {
@@ -352,7 +353,7 @@ $(document).ready(function() {
 								window.location.href = "../HTML/customer_home_page.html";
 							} else if (roleId === "3") {
 								alert("Login successful! Redirecting to CRE Dashboard.");
-								window.location.href = "../HTML/CRE.html";
+								window.location.href = "../HTML/cre.html";
 							} else if (roleId === "4") {
 								alert("Login successful! Redirecting to Admin Dashboard.");
 								window.location.href = "../HTML/dashboard.html";

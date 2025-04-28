@@ -1,0 +1,48 @@
+body {
+    padding: 0 0 60px 30px;
+    background: #0d0d0d;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+ 
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 0 15px #D0944D;
+    margin-top: 20px;
+  }
+
+  #enquiryTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #enquiryTable th, #enquiryTable td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #D0944D;
+  }
+
+  #enquiryTable th {
+    background: #D0944D;
+    color: black;
+    font-weight: bold;
+  }
+
+  .convert-btn {
+    padding: 8px 16px;
+    background: #D0944D;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
