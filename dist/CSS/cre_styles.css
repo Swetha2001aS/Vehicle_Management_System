@@ -22,7 +22,7 @@ body {
     margin-bottom: 20px;
   }
   /* Button style */
-  .action-btn {
+  .action-btn, .action-btn2 {
     padding: 20px 40px;
     font-size: 18px;
     font-weight: 600;
@@ -34,7 +34,7 @@ body {
     transition: all 0.3s ease;
   }
   
-  .action-btn i {
+  .action-btn i,.action-btn2 i {
     margin-right: 10px;
   }
   
@@ -45,4 +45,12 @@ body {
     border-color: #ffffff;
     transform: scale(1.08);
   }
+
+  .action-btn2:hover {
+    background-color: #D0944D; /* darker teal */
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: scale(1.08);
+  }
+  
   

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Customer Dashboard</title>
+  <title>Manger Dashboard</title>
   <link rel="icon" href="path/to/favicon.ico" />
 
   <!-- Bootstrap CSS -->
@@ -36,15 +36,56 @@
         <div id="sidebar-placeholder"></div>
 
 
-        <section class="home-section" id="homeSection">
-            <div class="button-group">
-              <button class="action-btn" onclick="handleEnquiryClick()">
-                <i class="fas fa-envelope"></i> BOOKING CONFIRM
-              </button>
-            </div>
-          </section>
+        <!-- <section class="home-section" id="homeSection">
+          <div class="button-container">
+            <button class="action-btn" onclick="handleEnquiryClick()">
+              <i class="fas fa-envelope"></i> BOOKING CONFIRM
+            </button>
+          </div>
+        </section>
+         -->
           
       
+      <!-- Main Content Area -->
+    <div class="dashboard-content">
+      <div id="enquiries" class="page-section active">
+        <h2>Booking list</h2>
+        <div class="table-wrapper">
+          <table id="enquiryTable">
+            <thead>
+              <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Brand Name</th>
+                <th>Model</th>
+                <th>Enquire Date</th>
+                <th>Last Action</th>
+              </tr>
+            </thead>
+            <tbody id="enquiryTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <!--   Popup Modal    -->
+
+    <div id="popupForm" style="display:none; position:fixed; top:30%; left:40%; background:white; border:1px solid #ccc; padding:20px; z-index:1000;">
+      <h4>Confirm Booking</h4>
+      <label>Estimated Date: <input type="date" id="estimateDate" required /></label><br><br>
+      <label>Payment Status: 
+          <select id="paymentStatus">
+              <option value="Pending">Pending</option>
+              <option value="Paid">Paid</option>
+          </select>
+      </label><br><br>
+      <label>Amount: <input type="text" id="amount" readonly /></label><br><br>
+      <button id="submitBooking">Submit</button>
+      <button onclick="$('#popupForm').hide()">Cancel</button>
+  </div>
+  
+
 
 
 

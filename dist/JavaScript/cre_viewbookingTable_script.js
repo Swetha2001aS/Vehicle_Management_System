@@ -7,7 +7,7 @@ $(document).ready(function () {
             tableBody.empty();  // Clear previous data
 
             mappingData.forEach(mapping => {
-                if (mapping.mappingMode === "ENQUIRY" && mapping.mappingStatus === "A") {
+                if (mapping.mappingMode === "BOOKING CONFIRM" && mapping.mappingStatus === "A") {
                     const bookingId = mapping.mappingModeId;
                     $.get(`http://localhost:8080/api/bookings/details/${bookingId}`, function (bookingDetails) {
                         console.log("-------booking---------", bookingDetails);
@@ -66,17 +66,35 @@ $(document).ready(function () {
         console.log("----- postData ----->", postData);
 
         $.ajax({
-            url: "http://localhost:8080/api/mappings/testdrive/cre",
+            url: "http://localhost:8080/api/mappings/delivered/tocre",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(postData),
             success: function () {
-                alert("✅ Successfully converted to TEST DRIVE!");
-                fetchEnquiries(); // refresh table
+                showCustomAlert("✅ Successfully converted to TEST DRIVE!");
+                fetchEnquiries();
             },
             error: function () {
-                alert("❌ Failed to convert enquiry. Please try again.");
+                showCustomAlert("❌ Failed to convert enquiry. Please try again.", true);
             }
+            
         });
     });
 });
+
+
+
+
+// ---------------alert style---------------
+function showCustomAlert(message, isError = false) {
+    const alertBox = $('#customAlert');
+    alertBox.text(message);
+    alertBox.removeClass('error');
+    if (isError) alertBox.addClass('error');
+    alertBox.fadeIn(200);
+
+    setTimeout(() => {
+        alertBox.fadeOut(500);
+    }, 3000);
+}
+

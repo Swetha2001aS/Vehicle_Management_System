@@ -1,0 +1,40 @@
+ .table-wrapper {
+    height: 100vh;
+    width:100%;
+    padding-left: 60px;
+    overflow-x: auto;
+    background: rgba(225, 224, 224, 0.7);
+    border-radius: 12px;
+    margin-top: 20px;
+  }
+
+  #enquiryTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #enquiryTable th, #enquiryTable td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #D0944D;
+  }
+
+  #enquiryTable th {
+    background: #D0944D;
+    color: black;
+    font-weight: bold;
+  }
+
+  .convert-btn {
+    padding: 8px 16px;
+    background: #D0944D;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+
+

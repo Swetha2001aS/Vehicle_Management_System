@@ -13,10 +13,7 @@ $(document).ready(function() {
         $("#mainContent, #vehicleViewContainer, .about-section,#banner,#homeSection").hide();
     });
 
-    // Enquiry button click handler
-    $(".enquiry-btn").on("click", function() {
-        handleEnquiryClick("hiiii");
-    });
+    
 });
 
 
@@ -27,11 +24,28 @@ function handleEnquiryClick() {
     window.location.href = "../HTML/cre_view_table.html";
   }
   
+
+  function handleViewBookingsClick() {
+    // Redirect to the bookings view page
+    window.location.href = "../HTML/cre_viewbookingtable.html";
+  }
+  
+
+
+
+
   // jQuery equivalent for handling the click event
   $(document).ready(function() {
     // Bind the click event for the Enquiry button
     $(".action-btn").on("click", function() {
       handleEnquiryClick();
     });
+
+    $(".action-btn2").on("click", function() {
+      handleViewBookingsClick();
+    });
+
+
+
   });
   
