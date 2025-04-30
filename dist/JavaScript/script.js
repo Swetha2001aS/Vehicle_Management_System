@@ -1,3 +1,5 @@
+// ------------------LOGIN & REGISTRATION----------------------------
+
 $(document).ready(function() {
 	$(".toggle").on("click", function() {
 		$(".container").stop().addClass("active");

@@ -98,6 +98,61 @@
       </div>
 
 
+
+
+
+<!-- Invoice Notification -->
+<div class="alert alert-success text-center mt-4" id="invoiceAlert" style="display: none; cursor: pointer;">
+  <i class="fas fa-file-invoice"></i> Your Booking Invoice is Ready! Click to View
+</div>
+
+<!-- Invoice Modal -->
+<div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="invoiceModalLabel">Booking Invoice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Invoice Content -->
+        <div id="invoiceContent">
+          <p><strong>Customer:</strong> John Doe</p>
+          <p><strong>Vehicle:</strong> Toyota Innova 2022 ZX</p>
+          <p><strong>Booking Date:</strong> 2025-04-25</p>
+          <p><strong>Amount:</strong> ₹ 45,000</p>
+          <hr>
+          <p><strong>Total Payable:</strong> ₹ 45,000</p>
+          <p class="text-muted">Thank you for your booking!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Show the invoice notification after a booking (simulate for now)
+  $(document).ready(function () {
+    // Simulate invoice ready after 3 seconds
+    setTimeout(function () {
+      $('#invoiceAlert').fadeIn();
+    }, 3000);
+
+    // On click, show the modal invoice
+    $('#invoiceAlert').on('click', function () {
+      $('#invoiceModal').modal('show');
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
     <p>&copy; 2025 Vehicle Service System | All Rights Reserved</p>

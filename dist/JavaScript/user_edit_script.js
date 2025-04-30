@@ -1,3 +1,5 @@
+// --------------------USER DETAILS UPDATE FORM-------------------
+
 function goBack() {
   window.location.href = "view_all_user.html";
 }
@@ -74,6 +76,10 @@ $(document).ready(function () {
     });
   }
 
+
+// ---------------------------------------------------------------------------------------
+
+
   $('.address-section').each(function () {
     initAddressSection($(this));
   });
@@ -106,6 +112,18 @@ $(document).ready(function () {
       }
     }
   });
+
+
+
+
+
+
+
+
+
+
+
+// -------------------------------------------------------------------------------------
 
   $('.address-section .form-group select').on('change', function () {
     $(this).toggleClass('has-value', !!$(this).val());
@@ -155,6 +173,15 @@ $(document).ready(function () {
       alert("Failed to fetch user details.");
     }
   });
+
+
+
+
+
+
+// -----------------------------------------------------------------------------------------
+
+
 
   $('#toggle-password').click(function () {
     const field = $('#register-password');

@@ -47,30 +47,33 @@ body {
       cursor: pointer;
       transition: 0.3s;
     }
+    
+
+    /* --------alert--------- */
+
     .custom-alert {
-        display: none;
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #2dce89;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-size: 14px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        z-index: 9999;
-        animation: fadeInOut 3s ease-in-out;
-      }
-      
-      .custom-alert.error {
-        background-color: #f5365c;
-      }
-      
-      @keyframes fadeInOut {
-        0% { opacity: 0; bottom: 10px; }
-        10% { opacity: 1; bottom: 30px; }
-        90% { opacity: 1; bottom: 30px; }
-        100% { opacity: 0; bottom: 10px; }
-      }
-      
-  
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #2dce89;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 9999;
+      animation: fadeInOut 3s ease-in-out;
+    }
+    
+    .custom-alert.error {
+      background-color: #f5365c;
+    }
+    
+    @keyframes fadeInOut {
+      0% { opacity: 0; bottom: 10px; }
+      10% { opacity: 1; bottom: 30px; }
+      90% { opacity: 1; bottom: 30px; }
+      100% { opacity: 0; bottom: 10px; }
+    }
+    

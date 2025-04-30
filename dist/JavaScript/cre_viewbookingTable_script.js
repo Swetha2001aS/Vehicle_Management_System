@@ -4,14 +4,14 @@ $(document).ready(function () {
     function fetchEnquiries() {
         $.get("http://localhost:8080/api/mappings/all", function (mappingData) {
             const tableBody = $('#enquiryTableBody');
-            tableBody.empty();  // Clear previous data
-
+            tableBody.empty(); // Clear previous data
+            console.log(localStorage.getItem("estimatedDate"))
             mappingData.forEach(mapping => {
                 if (mapping.mappingMode === "BOOKING CONFIRM" && mapping.mappingStatus === "A") {
                     const bookingId = mapping.mappingModeId;
                     $.get(`http://localhost:8080/api/bookings/details/${bookingId}`, function (bookingDetails) {
-                        console.log("-------booking---------", bookingDetails);
                         const booking = bookingDetails[0];
+                        const price = localStorage.getItem("vehiclePrice") || "0";
                         const row = `
                             <tr>
                                 <td>${booking.userdto ? booking.userdto.firstName : 'N/A'}</td>
@@ -19,13 +19,15 @@ $(document).ready(function () {
                                 <td>${booking.vehicle ? booking.vehicle.brand : 'N/A'}</td>
                                 <td>${booking.vehicle ? booking.vehicle.model : 'N/A'}</td>
                                 <td>${mapping.mappingDate || 'N/A'}</td>
+                                <td>${localStorage.getItem("estimatedDate") || 'N/A'}</td> <!-- NEW COLUMN -->
+
                                 <td>
                                     <button class="convert-btn"
                                         data-mappingid="${mapping.mappingId}"
                                         data-modeid="${mapping.mappingModeId}"
                                         data-userid="${booking.userdto?.userId}"
                                         data-vehicleid="${booking.vehicle?.id}"
-                                        data-amount="500.0"
+                                        data-amount="${price}"
                                         data-mappingdate="${mapping.mappingDate}">
                                         Convert
                                     </button>
@@ -39,28 +41,29 @@ $(document).ready(function () {
         });
     }
 
-    // ------------------- Button click handler ------------------
+    // ---------- Convert Button Click ----------
     $('#enquiryTableBody').on('click', '.convert-btn', function () {
         const mappingId = $(this).data('mappingid');
         const userId = $(this).data('userid');
         const vehicleId = $(this).data('vehicleid');
         const mappingModeId = $(this).data('modeid');
-        const amount = $(this).data('amount');
-        const mappingDate = $(this).data('mappingdate'); // extra if needed
+        const mappingDate = $(this).data('mappingdate');
 
         if (!mappingId || !userId || !vehicleId || !mappingModeId) {
-            alert("Missing required data!");
+            showCustomAlert("❌ Missing required data!", true);
             return;
         }
+
+        const price = localStorage.getItem("vehiclePrice") || "0";
 
         const postData = {
             mappingId: mappingId,
             userId: userId,
             vehicleId: vehicleId,
             mappingModeId: mappingModeId,
-            estimatedDeliveryDate: mappingDate, // if needed, otherwise remove this
+            estimatedDeliveryDate: mappingDate,
             paymentStatus: "Pending",
-            amount: amount
+            amount: price
         };
 
         console.log("----- postData ----->", postData);
@@ -71,21 +74,17 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(postData),
             success: function () {
-                showCustomAlert("✅ Successfully converted to TEST DRIVE!");
+                showCustomAlert("✅ Successfully converted to DELIVERED!");
                 fetchEnquiries();
             },
             error: function () {
-                showCustomAlert("❌ Failed to convert enquiry. Please try again.", true);
+                showCustomAlert("❌ Failed to convert to delivered. Please try again.", true);
             }
-            
         });
     });
 });
 
-
-
-
-// ---------------alert style---------------
+// --------------- Custom Styled Alert ---------------
 function showCustomAlert(message, isError = false) {
     const alertBox = $('#customAlert');
     alertBox.text(message);
@@ -97,4 +96,3 @@ function showCustomAlert(message, isError = false) {
         alertBox.fadeOut(500);
     }, 3000);
 }
-

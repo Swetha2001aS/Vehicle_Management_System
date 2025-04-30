@@ -3,6 +3,7 @@ body.dashboard-body {
     display: flex;
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #ccecec;
   }
   
   /* Sidebar Styles */

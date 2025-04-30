@@ -85,23 +85,28 @@
     <button class="btn action-btn">
       <i class="fas fa-user-tag"></i> User Role
     </button>
+    <button class="btn action-btn" id="deliveredBookingsLink">
+      <i class="fas fa-check-circle"></i> Delivered Bookings
+    </button>
+    
   </div>
 
   <div class="dashboard-overview">
     <div class="stat-card">
       <div class="stat-card-title">Total Vehicles</div>
-      <div class="stat-card-value">120</div>
+      <div class="stat-card-value" id="vehicleCount">120</div>
     </div>
     
     <div class="stat-card">
       <div class="stat-card-title">Active Bookings</div>
-      <div class="stat-card-value">45</div>
+      <div class="stat-card-value" id="bookingCount">45</div>
     </div>
     
     <div class="stat-card">
       <div class="stat-card-title">Registered Users</div>
       <div class="stat-card-value" id="userCount">Loading...</div>
     </div>
+    
     
     
     
@@ -171,8 +176,17 @@
        
 <section class="vehicle-section">
   <div class="view-vehicle-container" id="vehicleViewContainer"></div>
+
+</section>
+
+<section class="vehicle-section">
+  <div class="view-vehicle-container" id="deliveredBookingsContainer"></div>
 </div>
 </section>
+
+</div>
+
+
 
 
 

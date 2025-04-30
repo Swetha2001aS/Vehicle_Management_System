@@ -1,3 +1,4 @@
+// -----------------------MANAGER DASHBOARD------------------------------
 $(document).ready(function () {
     fetchEnquiries();
 
@@ -99,10 +100,14 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(postData),
             success: function () {
+                localStorage.setItem("estimatedDate",estimatedDeliveryDate);
                 // Step 2: Also update booking record
                 const bookingUpdate = {
                     bookingId: currentData.mappingModeId,
+                    userId: currentData.userId,
+                    vehicleId: currentData.vehicleId,
                     estimatedDeliveryDate,
+
                     paymentStatus,
                     status: "C" // A to C
                 };
